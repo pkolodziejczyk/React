@@ -14,6 +14,7 @@ const session = require('express-session');
 let User = require('./user.model');
 let Product = require('./product.model');
 let Category = require('./category.model');
+let Post = require('./post.model');
 
 // C'est moogoose qui gère la connexion
 mongoose.connect(url,{useUnifiedTopology: true}, function (err, db) {
@@ -223,7 +224,18 @@ mongoose.connect(url,{useUnifiedTopology: true}, function (err, db) {
     app.use('/api',APIRoutes);
     //api/create
     //api/users
-
+    APIRoutes.route('/postOfUser/:login').get(function(req, res) {
+        let login = req.params.login;
+        console.log("doing postOfUser");
+        console.log(login);
+        Post.find({ login: login }, function(err, posts) {
+            if (err) {
+                res.json([]);
+            } else {
+                res.json(posts);
+            }
+        });
+    });
     var server = app.listen(portServer, function () {
         var host = server.address().address
         var port = server.address().port

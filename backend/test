@@ -1,0 +1,1 @@
+db.products.insert( { login: "test", title: "coucou", content:"Salut les musclés" } )

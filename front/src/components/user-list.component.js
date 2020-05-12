@@ -32,12 +32,14 @@ export default class UsersList extends Component {
                     <thead>
                     <tr>
                         <th>login</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {this.state.users.map((user) =>
                         <tr>
                             <td> {user.login}</td>
+                            <td><Link to={"/"+user.login}>Vue Blog</Link></td>
                         </tr>
                     )}
                     </tbody>

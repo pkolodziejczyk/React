@@ -6,6 +6,7 @@ import ListUser from "./components/user-list.component";
 import UpdateUser from "./components/user-update.component";
 import CreateUser from "./components/user-create.component";
 import LoginUser from "./components/user-login.component";
+import BlogUser from "./components/blog-user.component";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/" exact component={ListUser} />
                 <Route path="/create" component={CreateUser} />
                 <Route path="/login" component={LoginUser} />
+                <Route path="/:login" component={BlogUser} />
             </div>
         </Router>
     );
