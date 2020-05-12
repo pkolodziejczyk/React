@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class CreateUser extends Component {
 
@@ -17,7 +18,7 @@ export default class CreateUser extends Component {
             email: "",
             password: "",
             password_confirmation: "",
-            type: false
+            admin: false
         }
     }
 
@@ -45,12 +46,6 @@ export default class CreateUser extends Component {
         });
     }
 
-    onChangePasswordConfirmation(e) {
-        this.setState({
-            password_confirmation: e.target.value
-        });
-    }
-
     onSubmit(e) {
         e.preventDefault(); // to prevent default submit behaviour
 
@@ -59,14 +54,25 @@ export default class CreateUser extends Component {
         console.log('email: ', this.state.email);
         console.log('password: ', this.state.password);
         console.log('password_confirmation: ', this.state.password_confirmation);
-        console.log('type: ', this.state.type);
+        console.log('type: ', this.state.admin);
+
+        const user = {
+            login: this.state.login,
+            email: this.state.email,
+            password: this.state.password,
+            password_confirmation: this.state.password_confirmation,
+            admin: this.state.admin
+        };
+
+        axios.post('http://localhost:4242/api/create', user)
+            .then(res => console.log(res.data));
 
         this.setState({ // to reinitialyse the form after being submitted
             login: "",
             email: "",
             password: "",
             password_confirmation: "",
-            type: false 
+            admin: false
         })
     }
 
